@@ -22,7 +22,7 @@ function varargout = prototype(varargin)
 
 % Edit the above text to modify the response to help prototype
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 09:12:44
+% Last Modified by GUIDE v2.5 04-Dec-2017 12:31:04
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -128,8 +128,9 @@ switch sentence
         countdown_ini(5, handles);
         
         % display sentence
-        str = strcat('Estou na posiÁ„o n.', num2str(tmp_val));
+        str = strcat('Estou na posi√ß√£o n√∫mero-', num2str(tmp_val));
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -157,6 +158,7 @@ switch sentence
         % display sentence
         str = strcat('Vizzy');
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -184,6 +186,7 @@ switch sentence
         % display sentence
         str = strcat('Chico');
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -209,8 +212,9 @@ switch sentence
         countdown_ini(5, handles);
         
         % display sentence
-        str = strcat('O robÙ Vizzy vai ajudar a fazer exercÌcio fÌsico.');
+        str = strcat('O rob√¥ Vizzy vai ajudar a fazer exerc√≠cio f√≠sico.');
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -236,8 +240,9 @@ switch sentence
         countdown_ini(5, handles);
         
         % display sentence
-        str = strcat('O robÙ Chico tambÈm faz exercÌcio.');
+        str = strcat('O rob√¥ Chico tamb√©m faz exerc√≠cio.');
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -264,8 +269,9 @@ switch sentence
         countdown_ini(5, handles);
         
         % display sentence
-        str = 'Vai poder ser usado em hospitais e clÌnicas.';
+        str = 'Vai poder ser usado em hospitais e cl√≠nicas.';
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -292,8 +298,9 @@ switch sentence
         countdown_ini(5, handles);
         
         % display sentence
-        str = 'Ser· um dos primeiros robÙs fisioterapeutas do mundo.';
+        str = 'Ser√° um dos primeiros rob√¥s fisioterapeutas do mundo.';
         set(handles.screen_text, 'String', str);
+        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
         
         % record audio
         fs =48e3;
@@ -317,7 +324,8 @@ switch sentence
         sentence = 0;
         sentence_str = sprintf('Sentence %d', sentence);
         set(handles.sentence_text, 'String', sentence_str);
-        set(handles.screen_text, 'String', 'Avance para a prÛxima posiÁ„o, por favor');
+        set(handles.screen_text, 'String', 'Avance para a pr√≥xima posi√ß√£o, por favor');
+        set(handles.screen_text, 'ForegroundColor', 'black');
         
 end
     
@@ -362,13 +370,13 @@ fs = 44e3;
 % record audio
 r = audiorecorder(fs, 16, 1);
 record(r)
-set(handles.screen_text, 'String', 'Aguarde...');
+set(handles.screen_text, 'String', 'Aguarde...');set(handles.screen_text, 'ForegroundColor', 'black');
 for i = time_seconds:-1:1
     % set(handles.screen_text, 'String', num2str(i));
     pause (1);
 end
 stop(r);
-set(handles.screen_text, 'String', 'PrÛxima frase: ');
+set(handles.screen_text, 'String', 'Pr√≥xima frase: '); set(handles.screen_text, 'ForegroundColor', 'black');
 
 % get audio data
 sig = getaudiodata(r, 'int16');
@@ -445,3 +453,13 @@ function position_popupmenu_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on key press with focus on screen_text and none of its controls.
+function screen_text_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to screen_text (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
