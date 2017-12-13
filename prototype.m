@@ -430,10 +430,16 @@ function record_main (handles, str, time_seconds, H)
     AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
     tic
     %while getkey ~= 13 % equivalent to "enter" key
-    while toc < time_seconds    
+    set ( gcf, 'CurrentCharacter','x');
+    while 1   
         [audioIn] = H();
         AFW(audioIn);
+        drawnow
+        k = get (gcf, 'CurrentCharacter');
         disp('recording main');
+        if k == 13
+            break
+        end
     end
     set(handles.screen_text, 'String', 'Aguarde...');
     set(handles.screen_text, 'ForegroundColor', 'black'); 
