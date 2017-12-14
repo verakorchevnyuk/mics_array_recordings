@@ -461,7 +461,11 @@ function record_main (handles, str,  H)
     set(handles.sentence_text, 'String', sentence_str);
     set(handles.screen_text, 'String', str);
     set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-    drawnow
+    
+    % Disable pushbutton NEXT
+%     set(handles.click_pushbutton,'Enable','off') ; drawnow
+    set(handles.click_pushbutton, 'BackgroundColor', [0.64 0.08 0.18]); drawnow
+
     filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
     AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
     tic
@@ -474,10 +478,15 @@ function record_main (handles, str,  H)
         k = get (gcf, 'CurrentCharacter');
         %disp('recording main');
         if k == 13
-            break
+            break 
         end
     end
+    disp('a')
+    
+    set(gcf,'Visible','on'); drawnow; % ---- Window disappears :(
+
     set(handles.screen_text, 'String', 'Aguarde...');
+%     set(handles.click_pushbutton,'Enable','on') 
     set(handles.screen_text, 'ForegroundColor', 'black'); 
     drawnow
     release(AFW)
@@ -584,6 +593,7 @@ tic;
     %pause (1);
 end
 set(handles.screen_text, 'String', 'Próxima frase: '); set(handles.screen_text, 'ForegroundColor', 'black');
+set(handles.click_pushbutton, 'BackgroundColor', [0.16 0.38 0.27]);
 release(AFW)
 
 
