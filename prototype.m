@@ -122,8 +122,8 @@ set(handles.sentence_text, 'String', sentence_str);
 fs =48e3;
 
 H = dsp.AudioRecorder;
-H.DeviceName = 'STM32 AUDIO Streaming in FS Mod: USB Audio (hw:1,0)';
-H.NumChannels = 10;
+% H.DeviceName = 'STM32 AUDIO Streaming in FS Mod: USB Audio (hw:1,0)';
+% H.NumChannels = 10;
 H.SampleRate = 48e3;
 
 % Sentences to read
@@ -168,7 +168,8 @@ switch sentence
 %             %         end
 %         end
 %         release(AFW)
-        record_main (handles, str, 5, H);
+       % record_main (handles, str, 5, H);
+        record_main (handles, str,  H)
         % final silence countdown
         countdown_fin(5, handles, H);
         % record and store final silence
@@ -179,73 +180,74 @@ switch sentence
         
         % display sentence
         str = strcat('Vizzy');
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        %         % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %      tic;
-        while getkey ~= 13 % equivalent to "enter" key
-            
-            %         while toc < 5
-            [audioIn] = H();
-            AFW(audioIn);
-            %         end
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         %         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %      tic;
+%         while getkey ~= 13 % equivalent to "enter" key
+%             
+%             %         while toc < 5
+%             [audioIn] = H();
+%             AFW(audioIn);
+%             %         end
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
     case 3
         
         % initial silence countdown
         countdown_ini(5, handles, H);
-        
         % display sentence
         str = strcat('Chico');
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        %         % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %         tic;
-        %         while toc < 5
-        while getkey ~= 13 % equivalent to "enter" key
-            
-            [audioIn] = H();
-            AFW(audioIn);
-            %         end
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         %         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %         tic;
+%         %         while toc < 5
+%         while getkey ~= 13 % equivalent to "enter" key
+%             
+%             [audioIn] = H();
+%             AFW(audioIn);
+%             %         end
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
     case 4
@@ -255,35 +257,36 @@ switch sentence
         
         % display sentence
         str = strcat('O robô Vizzy vai ajudar a fazer exercício físico.');
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %         tic;
-        %         while toc < 5
-        while getkey ~= 13 % equivalent to "enter" key
-            
-            [audioIn] = H();
-            AFW(audioIn);
-            %         end
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %         tic;
+%         %         while toc < 5
+%         while getkey ~= 13 % equivalent to "enter" key
+%             
+%             [audioIn] = H();
+%             AFW(audioIn);
+%             %         end
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
     case 5
@@ -293,35 +296,36 @@ switch sentence
         
         % display sentence
         str = strcat('O robô Chico também faz exercício.');
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        %         % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %         tic;
-        %         while toc < 5
-        while getkey ~= 13 % equivalent to "enter" key
-      
-        [audioIn] = H();
-        AFW(audioIn);
-        %         end
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         %         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %         tic;
+%         %         while toc < 5
+%         while getkey ~= 13 % equivalent to "enter" key
+%       
+%         [audioIn] = H();
+%         AFW(audioIn);
+%         %         end
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
         
@@ -332,35 +336,36 @@ switch sentence
         
         % display sentence
         str = 'Vai poder ser usado em hospitais e clínicas.';
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        %         % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %         tic;
-        %         while toc < 5
-        while getkey ~= 13 % equivalent to "enter" key
-       
-        [audioIn] = H();
-        AFW(audioIn);
-        %         end
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         %         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %         tic;
+%         %         while toc < 5
+%         while getkey ~= 13 % equivalent to "enter" key
+%        
+%         [audioIn] = H();
+%         AFW(audioIn);
+%         %         end
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
         
@@ -371,38 +376,69 @@ switch sentence
         
         % display sentence
         str = 'Será um dos primeiros robôs fisioterapeutas do mundo.';
-        set(handles.screen_text, 'String', str);
-        set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
-        
-        % record audio
-        %         r = audiorecorder(fs, 16, 1);
-        %         record(r);
-        %         while getkey ~= 13 % equivalent to "enter" key
-        %         end
-        %         stop(r)
-        %
-        %         % get audio data
-        %         sig = getaudiodata(r, 'int16');
-        
-        % write wav file
-        filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
-        %         audiowrite(filename,sig,fs);
-        % record and store sentence
-        AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
-        %         disp('Speak into microphone now');
-        %         tic;
-        %         while toc < 5
-        while getkey ~= 13 % equivalent to "enter" key
-       
-        [audioIn] = H();
-        AFW(audioIn);
-        %         end
-       % while getkey ~= 13 % equivalent to "enter" key
-        end
-        release(AFW)
-        % final silence countdown
+%         set(handles.screen_text, 'String', str);
+%         set(handles.screen_text, 'ForegroundColor', [0 0.7 0]);
+%         
+%         % record audio
+%         %         r = audiorecorder(fs, 16, 1);
+%         %         record(r);
+%         %         while getkey ~= 13 % equivalent to "enter" key
+%         %         end
+%         %         stop(r)
+%         %
+%         %         % get audio data
+%         %         sig = getaudiodata(r, 'int16');
+%         
+%         % write wav file
+%         filename = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '_sentence-', num2str(sentence),'_main', '.wav');
+%         %         audiowrite(filename,sig,fs);
+%         % record and store sentence
+%         AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
+%         %         disp('Speak into microphone now');
+%         %         tic;
+%         %         while toc < 5
+%         while getkey ~= 13 % equivalent to "enter" key
+%        
+%         [audioIn] = H();
+%         AFW(audioIn);
+%         %         end
+%        % while getkey ~= 13 % equivalent to "enter" key
+%         end
+%         release(AFW)
+%         % final silence countdown
+        record_main (handles, str,  H)
         countdown_fin(5, handles, H);
         % record and store final silence
+        
+        % 1. store recorded files in folders - FOLDER: results_folded
+            % a - create folder
+            clear foldername folderlocal filenames
+            foldername = sprintf('s-%d_n-%d_p-%d', speaker, noise, position) ;
+            folderlocal = strcat(cd,'/results_folded/', foldername);
+            mkdir (folderlocal);
+            % b - copy files to new folder
+            filenames = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '*');
+            copyfile(filenames, folderlocal)
+            
+        % 2. store files all together - FOLDER: results_alltogether
+            % a - create folder
+            clear foldername folderlocal filenames
+            foldername = sprintf('results_alltogether') ; % file name
+            % b - copy files to new folder
+            folderlocal = strcat(cd,'/', foldername);
+            filenames = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '*');
+            copyfile(filenames, folderlocal)
+        
+        % 3. store recorded files in backup folder - FOLDER: results_backup
+            % a - create folder
+            clear foldername folderlocal filenames
+            foldername = sprintf(datestr(now)) ;
+            folderlocal = strcat(cd,'/results_backup/', foldername);
+            mkdir (folderlocal);
+            % b - copy files to new folder
+            filenames = strcat('speaker-', num2str(speaker), '_noise-', num2str(noise), '_position-', num2str(position), '*');
+            movefile(filenames, folderlocal)
+        
         
         sentence = 0;
         sentence_str = sprintf('Sentence %d', sentence);
@@ -413,13 +449,13 @@ switch sentence
 end
 
 
-function record_main (handles, str, time_seconds, H)
+function record_main (handles, str,  H)
     speaker = get(handles.speaker_popupmenu, 'Value');
     noise = get(handles.noise_popupmenu, 'Value');
     position = get(handles.position_popupmenu, 'Value');
     tmp_str = get(handles.sentence_text, 'String');
     sentence = sscanf(tmp_str(end),'%d');
-    sentence = sentence + 1;
+    %sentence = sentence + 1;
     sentence_str = sprintf('Sentence %d', sentence);
     
     set(handles.sentence_text, 'String', sentence_str);
@@ -436,7 +472,7 @@ function record_main (handles, str, time_seconds, H)
         AFW(audioIn);
         drawnow
         k = get (gcf, 'CurrentCharacter');
-        disp('recording main');
+        %disp('recording main');
         if k == 13
             break
         end
@@ -490,7 +526,7 @@ AFW = dsp.AudioFileWriter(filename,'FileFormat', 'WAV','SampleRate',48000);
     
     [audioIn] = H();
     AFW(audioIn);
-    disp('recording initial')
+    %disp('recording initial')
    % pause (1);
  end
 
@@ -544,7 +580,7 @@ tic;
     set(handles.screen_text, 'String', num2str(toc));
     [audioIn] = H();
     AFW(audioIn);
-    disp('recording final')
+   % disp('recording final')
     %pause (1);
 end
 set(handles.screen_text, 'String', 'Próxima frase: '); set(handles.screen_text, 'ForegroundColor', 'black');
